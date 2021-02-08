@@ -86,7 +86,7 @@ export default function Comp({route, navigation}) {
           fetchdata();
         }}
         style={styles.click}>
-        <Button style={styles.clicktext}>click here to get meme</Button>
+        <Text style={styles.clicktext}>click here to get meme</Text>
       </TouchableOpacity>
       {loading ? (
         <View style={styles.contain}>

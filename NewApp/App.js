@@ -13,8 +13,19 @@ export default function App() {
 
     <NavigationContainer>
       <Stack.Navigator initialRouteName="New">
-        <Stack.Screen name="New" component={New} />
-        <Stack.Screen name="Comp" component={Comp}  />
+        <Stack.Screen name="New" component={New} options={{ title: 'MemeApp',headerStyle:{
+          backgroundColor:"#ffddff"
+        } ,
+          headerTintColor: '#ff8888',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontFamily:'Orbitron-VariableFont_wght'
+          },}}/>
+        <Stack.Screen name="Comp" component={Comp} options={{ title: 'Generate Meme',headerStyle:{
+          backgroundColor:"#ffddff"
+        },headerTintColor:"#ff8888",headerTitleStyle:{
+          fontWeight:'bold',fontFamily:'Orbitron-VariableFont_wght'
+        } }}   />
  
       </Stack.Navigator>
    

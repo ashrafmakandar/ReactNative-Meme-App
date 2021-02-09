@@ -7,7 +7,14 @@ import {
   StyleSheet,
   Linking,
 } from 'react-native';
-import {Button, Card,Image} from 'react-native-elements';
+import {
+  Button,
+  Card,
+  Image,
+  Overlay,
+  Icon,
+  SocialIcon,
+} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import Share from 'react-native-share';
 export default function Comp({route, navigation}) {
@@ -16,6 +23,7 @@ export default function Comp({route, navigation}) {
   const [imageurls, setImageurls] = useState([]);
   const [loading, setLoading] = useState(false);
   const {id} = route.params;
+  const [visible, setVisible] = useState(false);
   function fetchdata() {
     fetch(
       'https://api.imgflip.com/caption_image?template_id=' +
@@ -44,19 +52,23 @@ export default function Comp({route, navigation}) {
       console.error('An error occurred', err),
     );
   }
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
 
   return (
     <View style={styles.container}>
       {loading ? (
-    
         <FastImage
           style={{
             width: 380,
             height: 200,
             borderRadius: 1,
             borderWidth: 1,
-            backgroundColor:"#fff",
-            margin: 1,padding:1,borderRadius:10
+            backgroundColor: '#fff',
+            margin: 1,
+            padding: 1,
+            borderRadius: 10,
           }}
           source={{
             uri: imageurls,
@@ -68,14 +80,14 @@ export default function Comp({route, navigation}) {
         <Text />
       )}
       <TextInput
-        placeholder="enter first text"
+        placeholder="Enter First Text"
         onChangeText={(text) => {
           setFirst(text);
         }}
         style={styles.input}
       />
       <TextInput
-        placeholder="enter second text"
+        placeholder="Enter Second Text"
         onChangeText={(text) => {
           setSecond(text);
         }}
@@ -86,7 +98,7 @@ export default function Comp({route, navigation}) {
           fetchdata();
         }}
         style={styles.click}>
-        <Text style={styles.clicktext}>click here to get meme</Text>
+        <Text style={styles.clicktext}>Click Here To Get Meme</Text>
       </TouchableOpacity>
       {loading ? (
         <View style={styles.contain}>
@@ -102,11 +114,8 @@ export default function Comp({route, navigation}) {
           </TouchableOpacity>
         </View>
       ) : (
-        <View>
-          <Text />
-        </View>
+        <View></View>
       )}
-
     </View>
   );
 }
@@ -122,6 +131,9 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     margin: 10,
     borderRadius: 2,
+    fontSize:20,
+    color:"#888",
+    fontFamily:'Cardo-Bold'
   },
   click: {
     paddingVertical: 15,
@@ -144,8 +156,10 @@ const styles = StyleSheet.create({
   },
   optionstext: {
     textAlign: 'center',
+    fontFamily:'Cardo-Bold'
   },
   clicktext: {
     textAlign: 'center',
+    fontFamily:'Orbitron-VariableFont_wght',fontSize:20
   },
 });
